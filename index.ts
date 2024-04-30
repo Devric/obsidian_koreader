@@ -53,7 +53,7 @@ const eta = new Eta({ views: path.join(__dirname, "templates") })
 // 	type -> icon
 // 	title ->
 // }
-const NOTE_STYLES: { [key: string]: { type: string; title: string } } = {
+const KOREADER_NOTE_MAPPER: { [key: string]: { type: string; title: string } } = {
     lighten:    { type: "quote"     , title: "Quotes"     } ,
     invert:     { type: "important" , title: "Attention!" } ,
     strikeout:  { type: "danger"    , title: "Wow!!"      } ,
@@ -69,7 +69,7 @@ const ENHANCED_DOC: tDoc[] = FULLDOC.documents.map((doc: tDoc) => {
 
 	doc.entries = doc.entries.map((entry: tEntry) => {
 
-		let values: tDrawer = NOTE_STYLES[entry.drawer]
+		let values: tDrawer = KOREADER_NOTE_MAPPER[entry.drawer]
 
 		entry.modified_drawer = values
 		entry.timestring = formatDate(new Date(entry.time * 1000))
@@ -88,18 +88,11 @@ FULLDOC.documents = ENHANCED_DOC
 // ==============================
 
 FULLDOC.documents.forEach((doc) => {
-	// console.log(doc.title)
-	// console.log(doc.file)
-	// console.log(doc.author)
-
 	const filename = `${doc.title}`
-
-	console.log(filename)
 
 	const res = eta.render("./simple", doc)
 
 	console.log(res)
-
 	 write(normalizeString(filename), res)
 })
 
