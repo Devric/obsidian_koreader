@@ -67,6 +67,7 @@ let FULLDOC: tFullDoc = JSON.parse(read(`./in/${file}`).success)
 
 const ENHANCED_DOC: tDoc[] = FULLDOC.documents.map((doc: tDoc) => {
 
+	// TODO Combine chapters
 	doc.entries = doc.entries.map((entry: tEntry) => {
 
 		let values: tDrawer = KOREADER_NOTE_MAPPER[entry.drawer]
