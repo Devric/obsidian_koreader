@@ -1,0 +1,25 @@
+{
+  "name": "obsidian_koreader",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc ./index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "mock-fs": "^5.2.0",
+    "pkg": "^5.8.1",
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "eta": "^3.4.0"
+  },
+  "pkg": {
+    "targets": [
+      "node14-macos"
+    ]
+  }
+}

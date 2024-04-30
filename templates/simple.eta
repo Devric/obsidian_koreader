@@ -1,0 +1,35 @@
+---
+title: "<%= it.title %>"
+aliases: ["Notes from <%= it.title %>"]
+tags: ["NOTES"]
+author: "<%= it.author %>"
+---
+
+# <%= it.title %>
+
+##### Author: <%= it.author %>
+
+<% it.entries.forEach(function(entry){ %>
+
+
+
+## Chapter: <%= entry.chapter %> 
+-------------------------------------------------------------------------------
+^<%= `${it.title}-${entry.chapter}-${entry.text}-${entry.sort}`.substring(0, 35).toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/_+/g, '-').replace(/^_|_$/g, '') %>
+
+<%= entry.text %> 
+
+<% if (entry.note) { %>
+
+> [!cite] <%= entry.note %>
+
+<% } %>
+
+> [!<%= entry.modified_drawer.type %>] <%= entry.modified_drawer.title %>
+
+
+Page: <%= entry.page %> - Marked@ <%= entry.timestring %> 
+
+-------------------------------------------------------------------------------
+<% }) %>
+
