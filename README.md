@@ -5,6 +5,11 @@
 
 Converts Koreader into Markdown with Obsidian Callouts & ^links syntax
 
+
+Result per block under a book (Example input below)
+![image](./example.png)
+
+
 ## Uses
 - nodejs (bun)
 - eta template
@@ -79,5 +84,3 @@ bun run index.ts
             ...
 ```
 
-Result per block under a book
-![image](./example.png)
