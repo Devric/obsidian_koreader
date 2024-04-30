@@ -26,3 +26,45 @@ Converts Koreader into Markdown with Obsidian Callouts & ^links
 - automatic sync
 - bun test have issues, cant be ran
 
+
+
+```
+// Example input in the /in folder
+{
+    "version": "json/1.0.0",
+    "documents": [
+        {
+            "author": "Claire Keegan",
+            "entries": [
+                {
+                    "sort": "highlight",
+                    "drawer": "invert",
+                    "text": "the",
+                    "page": 10,
+                    "chapter": "1",
+                    "time": 1714486566,
+                    "note": "1346yfeufuƒťûgdjgfifʈ"
+                },
+                {
+                    "sort": "highlight",
+                    "drawer": "underscore",
+                    "text": "while in the distance. I wish I was out there, working. I am unused to sitting still and do not know what to do with my hands. Part of me wants my father to leave me here while",
+                    "page": 10,
+                    ....
+                },
+                {
+                    "sort": "highlight",
+                    "drawer": "strikeout",
+                    ....
+                }
+            ],
+            "title": "Foster",
+            "file": "/storage/emulated/0/Books/PushBooks/Foster (Claire Keegan).epub"
+        },
+        {
+            "author": "Richard Matheson",
+            ...
+```
+
+Result per block under a book
+![image](./example.png)
