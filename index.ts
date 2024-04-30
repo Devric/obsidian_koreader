@@ -121,10 +121,10 @@ const eta = new Eta({ views: path.join(__dirname, "templates") })
 // 	title ->
 // }
 const NOTE_STYLES: { [key: string]: { type: string; title: string } } = {
-    lighten:    { type: "quote"     , title: "Quotable/Concept/General Idea" } ,
-    invert:     { type: "important" , title: "Striking/Intense"              } ,
-    strikeout:  { type: "danger"    , title: "Attention!"                    } ,
-    underscore: { type: "question"  , title: "Thought Provoking"             } ,
+    lighten:    { type: "quote"     , title: "Quotes"     } ,
+    invert:     { type: "important" , title: "Attention!" } ,
+    strikeout:  { type: "danger"    , title: "Wow!!"      } ,
+    underscore: { type: "question"  , title: "Huh?"       } ,
 };;
 
 
@@ -147,6 +147,7 @@ const ENHANCED_DOC: tDoc[] = FULLDOC.documents.map((doc: tDoc) => {
 	return doc
 })
 
+// Map it back
 FULLDOC.documents = ENHANCED_DOC
 
 
@@ -169,5 +170,6 @@ FULLDOC.documents.forEach((doc) => {
 	 write(normalizeString(filename), res)
 })
 
+// After complete creating each md
 deleteFilesInFolder('./in')
 
