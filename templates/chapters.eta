@@ -15,13 +15,13 @@ author: "<%= it.author %>"
 
 ## Chapter: <%= chapter %> 
 ======================================================================
-^<%= `${it.title}-${chapter}`.substring(0, 35).toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/_+/g, '-').replace(/^_|_$/g, '') %>
+^<%= `${it.title}-${chapter}`.substring(0, 35).toLowerCase().replace(/[^\u4e00-\u9fa5a-zA-Z0-9]+/g, '-').replace(/_+/g, '-').replace(/^_|_$/g, '') %>
 
 <% it.chapters[chapter].forEach(function(chapter, i){ %>
 
 ### Note: <%= i+1 %> 
 
-^<%= `${it.title}-#${chapter.chapter}-${i}`.substring(0, 35).toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/_+/g, '-').replace(/^_|_$/g, '') %>
+^<%= `${it.title}-#${chapter.chapter}-${i}`.substring(0, 35).toLowerCase().replace(/[^\u4e00-\u9fa5a-zA-Z0-9]+/g, '-').replace(/_+/g, '-').replace(/^_|_$/g, '') %>
 
 <%= chapter.text %> 
 

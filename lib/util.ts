@@ -8,7 +8,7 @@ export function normalizeString(str: string): string {
     str = str.trim();
 
     // Replace symbols and spaces with underscores
-    const normalizedStr = str.replace(/[^a-zA-Z0-9]+/g, '_');
+    const normalizedStr = str.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]+/g, '-');
 
     // Replace consecutive underscores with a single underscore
     const finalStr = normalizedStr.replace(/_+/g, '_').toLowerCase();
