@@ -42,7 +42,6 @@ bun run index.ts
 - cron job
 - automatic sync
 - bun test have issues, cant be ran
-- combine notes of the same chapter
 
 
 ## Example
