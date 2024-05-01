@@ -32,11 +32,16 @@ type tEntry = {
 	"modified_drawer"? : tDrawer,
 }
 
+type tGroupChater = {
+
+}
+
 type tDoc = {
 	entries: tEntry[],
 	title: string,
 	author: string,
 	file: string,
+	chapters?: any,
 }
 
 type tFullDoc = {
@@ -67,7 +72,7 @@ let FULLDOC: tFullDoc = JSON.parse(read(`./in/${file}`).success)
 
 const ENHANCED_DOC: tDoc[] = FULLDOC.documents.map((doc: tDoc) => {
 
-	// TODO Combine chapters
+	// Enhance Drawer
 	doc.entries = doc.entries.map((entry: tEntry) => {
 
 		let values: tDrawer = KOREADER_NOTE_MAPPER[entry.drawer]
@@ -78,8 +83,33 @@ const ENHANCED_DOC: tDoc[] = FULLDOC.documents.map((doc: tDoc) => {
 		return entry
 	})
 
+	// Group by chapters
+	const groupedEntries: Record<string, tEntry[]> = {};
+	doc.entries.forEach((entry: tEntry) => {
+		const chapter = entry.chapter;
+		if (!groupedEntries[chapter]) {
+			groupedEntries[chapter] = [];
+		}
+		groupedEntries[chapter].push(entry);
+	});
+
+	// Transform entries within each chapter
+	for (const chapter in groupedEntries) {
+		groupedEntries[chapter] = groupedEntries[chapter].map((entry: tEntry) => {
+			let values: tDrawer = KOREADER_NOTE_MAPPER[entry.drawer];
+			entry.modified_drawer = values;
+			entry.timestring = formatDate(new Date(entry.time * 1000));
+			return entry;
+		});
+	}
+
+	doc.entries = [] // remove, so its not duplicate data
+	doc.chapters = groupedEntries
+
 	return doc
 })
+
+console.log(ENHANCED_DOC)
 
 // Map it back
 FULLDOC.documents = ENHANCED_DOC
@@ -91,12 +121,13 @@ FULLDOC.documents = ENHANCED_DOC
 FULLDOC.documents.forEach((doc) => {
 	const filename = `${doc.title}`
 
-	const res = eta.render("./simple", doc)
+	// const res = eta.render("./entries", doc)
+	const res = eta.render("./chapters", doc)
 
 	console.log(res)
 	 write(normalizeString(filename), res)
 })
 
 // After complete creating each md
-deleteFilesInFolder('./in')
+ deleteFilesInFolder('./in')
 

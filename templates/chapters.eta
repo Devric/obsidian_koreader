@@ -1,0 +1,40 @@
+---
+title: "<%= it.title %>"
+aliases: ["Notes from <%= it.title %>"]
+tags: ["NOTES"]
+author: "<%= it.author %>"
+---
+
+# <%= it.title %>
+
+##### Author: <%= it.author %>
+
+<% for ( const chapter in it.chapters) { %>
+
+
+
+## Chapter: <%= chapter %> 
+======================================================================
+^<%= `${it.title}-${chapter}`.substring(0, 35).toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/_+/g, '-').replace(/^_|_$/g, '') %>
+
+<% it.chapters[chapter].forEach(function(chapter, i){ %>
+
+### Note: <%= i+1 %> 
+
+^<%= `${it.title}-#${chapter.chapter}-${i}`.substring(0, 35).toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/_+/g, '-').replace(/^_|_$/g, '') %>
+
+<%= chapter.text %> 
+
+<% if (chapter.note) { %>
+
+> [!cite] <%= chapter.note %>
+
+<% } %>
+
+> [!<%= chapter.modified_drawer.type %>] <%= chapter.modified_drawer.title %>
+
+
+Page: <%= chapter.page %> - Marked@ <%= chapter.timestring %> 
+
+-------------------------------------------------------------------------------
+<% }) %> <% } %>
